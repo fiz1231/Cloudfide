@@ -132,3 +132,102 @@ Check the database by running the following SQL commands:
 ```sql
 SELECT * FROM databasechangelog;
 SELECT * FROM products;
+```
+# Shop API Example
+
+This demonstrates how to use the API to fetch all available products.
+
+## API Endpoint
+GET ; http://localhost:8080/v1/shop/findAll
+
+
+### Response Example
+
+The API returns a JSON array of shop objects. Each object contains the following fields:
+
+- `id` – Shop ID
+- `name` – Shop name
+- `producentName` – Name of the producer/brand
+- `atrubutes` – Optional attributes object (may be `null`)
+
+Example response:
+
+```json
+[
+  {
+    "id": 2,
+    "name": "test",
+    "producentName": "Sony",
+    "atrubutes": {
+      "size": "3"
+    }
+  },
+  {
+    "id": 1,
+    "name": "testtest",
+    "producentName": "Apple",
+    "atrubutes": null
+  }
+]
+```
+# Shop API - Create Product
+
+This example demonstrates how to create a new product using the API.
+
+## API Endpoint
+POST ; http://localhost:8080/v1/shop/createProduct
+
+### Request Body
+
+The API expects a JSON object with the following structure:
+
+- `name` – Name of the product (string)
+- `producentid` – ID of the producer (integer)
+- `attributes` – Optional object containing product attributes (may include fields like `size`)
+
+Example request body:
+
+```json
+{
+  "name": "test",
+  "producentid": 1,
+  "attributes": {
+    "size": "3"
+  }
+}
+```
+# Shop API - Update Product
+
+This example demonstrates how to update an existing product using the API.
+
+## API Endpoint
+PUT ; http://localhost:8080/v1/shop/updateProduct/{productid}
+
+Replace `{productid}` with the ID of the product you want to update.
+
+### Request Body
+
+The API expects a JSON object with the following fields:
+
+- `name` – Updated name of the product (string)  
+- `producentid` – Updated producer ID (integer)  
+- `atrubutes` – Optional object containing updated product attributes  
+
+Example request body:
+
+```json
+{
+    "name": "testtest",
+    "producentid": 3,
+    "atrubutes": {
+        "size": 3
+    }
+}
+```
+# Shop API - Delete Product
+
+This example demonstrates how to delete an existing product using the API.
+
+## API Endpoint
+DELETE ; http://localhost:8080/v1/shop/deleteProduct/{productid}
+Replace `{productid}` with the ID of the product you want to delete.
